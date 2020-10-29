@@ -1,15 +1,19 @@
 package com.expensemanager.api.domain;
 
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Table;
 import javax.validation.constraints.NotEmpty;
 
 @Entity
+@Table(name="Expense")
 public class Expense {
 
 	@Id
-	@NotEmpty
-	String id;
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	int id;
 	@NotEmpty
 	String description;
 	@NotEmpty
@@ -19,7 +23,7 @@ public class Expense {
 	@NotEmpty
 	int year;
 
-	public Expense(@NotEmpty String id, @NotEmpty String description, @NotEmpty Integer amount, @NotEmpty String month, @NotEmpty int year) {
+	public Expense(@NotEmpty int id, @NotEmpty String description, @NotEmpty Integer amount, @NotEmpty String month, @NotEmpty int year) {
 		this.id = id;
 		this.description = description;
 		this.amount = amount;
@@ -30,11 +34,11 @@ public class Expense {
 	public Expense() {
 	}
 
-	public String getId() {
+	public int getId() {
 		return id;
 	}
 
-	public void setId(String id) {
+	public void setId(int id) {
 		this.id = id;
 	}
 
